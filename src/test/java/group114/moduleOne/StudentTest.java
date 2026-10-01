@@ -3,8 +3,6 @@ package test.java.group114.moduleOne;
 import group114.moduleOne.Group;
 import group114.moduleOne.Student;
 import org.junit.jupiter.api.*;
-import java.lang.reflect.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentTest {

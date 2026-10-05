@@ -55,6 +55,7 @@ buildNumber.properties
 coverage/
 *.coverdata
 
+.idea
 .idea/misc.xml
 .idea/compiler.xml
 .idea/modules.xml

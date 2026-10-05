@@ -1,13 +1,18 @@
-package group114.moduleOne;
+package ru.aston.homework;
 
 import java.util.Objects;
 
 public class Group {
     private String name;
     private int number;
+
     public Group(String name, int number) {
         this.name = name;
         this.number = number;
+    }
+
+    public Group(Group groupCopy) {
+        this(groupCopy.name, groupCopy.number);
     }
 
     public String getName() {

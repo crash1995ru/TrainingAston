@@ -1,8 +1,8 @@
-package test.java.group114.moduleOne;
+package ru.aston.homework.tests;
 
-import group114.moduleOne.Group;
-import group114.moduleOne.Student;
+import ru.aston.homework.*;
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentTest {
@@ -18,7 +18,7 @@ class StudentTest {
         external.setNumber(999);
 
         assertEquals("A", s.getGroup().getName());
-        assertEquals(1,   s.getGroup().getNumber());
+        assertEquals(1, s.getGroup().getNumber());
     }
 
     @Test
@@ -31,7 +31,7 @@ class StudentTest {
         leaked.setNumber(999);
 
         assertEquals("A", s.getGroup().getName());
-        assertEquals(1,   s.getGroup().getNumber());
+        assertEquals(1, s.getGroup().getNumber());
     }
 
     @Test
@@ -48,6 +48,41 @@ class StudentTest {
         Group external = new Group("A", 1);
         Student s = new Student("Max", 22, external);
         assertNotSame(external, s.getGroup());
+    }
+
+    @Test
+    @DisplayName("Возраст меньше 0 — исключение")
+    void constructor_negativeAge_throws() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Student("Max", -1, new Group("A", 1)));
+    }
+
+    @Test
+    @DisplayName("Возраст больше 100 — исключение")
+    void constructor_ageOver100_throws() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Student("Max", 101, new Group("A", 1)));
+    }
+
+    @Test
+    @DisplayName("Граничные значения 0 и 100 допустимы")
+    void constructor_boundaryAges_allowed() {
+        assertDoesNotThrow(() -> new Student("Max", 0, new Group("A", 1)));
+        assertDoesNotThrow(() -> new Student("Max", 100, new Group("A", 1)));
+    }
+
+    @Test
+    @DisplayName("null-имя — исключение")
+    void constructor_nullName_throws() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Student(null, 22, new Group("A", 1)));
+    }
+
+    @Test
+    @DisplayName("Пустое имя — исключение")
+    void constructor_blankName_throws() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Student("   ", 22, new Group("A", 1)));
     }
 
 

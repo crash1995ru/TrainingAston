@@ -1,16 +1,25 @@
-package group114.moduleOne;
+package ru.aston.homework;
 
 import java.util.Objects;
 
 public final class Student {
-    private String name;
+    private final String name;
     private final int age;
     private final Group group;
 
     public Student(String name, int age, Group group) {
-        this.name = name;
+        if (Objects.isNull(name) || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        if (age < 0 || age > 100) {
+            throw new IllegalArgumentException("Age must be between 0 and 100");
+        }
+        if (Objects.isNull(group)) {
+            throw new IllegalArgumentException("Group cannot be null");
+        }
+        this.name = name.trim();
         this.age = age;
-        this.group = new Group(group.getName(), group.getNumber());
+        this.group = new Group(group);
     }
 
     public String getName() {
@@ -22,7 +31,7 @@ public final class Student {
     }
 
     public Group getGroup() {
-        return new Group(group.getName(), group.getNumber());
+        return new Group(group);
     }
 
     @Override
